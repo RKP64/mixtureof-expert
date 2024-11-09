@@ -74,7 +74,7 @@ rec_layer_agent_config = {
 # Helper functions
 def json_to_moa_config(config_file) -> Dict[str, Any]:
     config = json.load(config_file)
-    moa_config = MOAgentConfig( # To check if everything is ok
+    moa_config = MOAgentConfig( 
         **config
     ).model_dump(exclude_unset=True)
     return {
@@ -135,17 +135,17 @@ def set_moa_agent(
 
 # App
 st.set_page_config(
-    page_title="Mixture-Of-Agents Powered by Groq",
-    page_icon='static/favicon.ico',
+    page_title="Mixture-Of-Agents Powered by KPMG",
+    page_icon='',
         menu_items={
-        'About': "## Groq Mixture-Of-Agents \n Powered by [Groq](https://groq.com)"
+        'About': ""
     },
     layout="wide"
 )
 
 valid_model_names = [model.id for model in Groq().models.list().data if not (model.id.startswith("whisper") or model.id.startswith("llama-guard"))]
 
-st.markdown("<a href='https://groq.com'><img src='app/static/banner.png' width='500'></a>", unsafe_allow_html=True)
+st.markdown("<", unsafe_allow_html=True)
 st.write("---")
 
 # Initialize session state
@@ -156,7 +156,7 @@ set_moa_agent()
 
 # Sidebar for configuration
 with st.sidebar:
-    st.title("MOA Configuration")
+    st.title("MIXTURE OF EXPERT Configuration")
     # upl_col, load_col = st.columns(2)
     st.download_button(
         "Download Current MoA Configuration as JSON", 
@@ -225,7 +225,7 @@ with st.sidebar:
         )
 
         # Layer agent configuration
-        tooltip = "Agents in the layer agent configuration run in parallel _per cycle_. Each layer agent supports all initialization parameters of [Langchain's ChatGroq](https://api.python.langchain.com/en/latest/chat_models/langchain_groq.chat_models.ChatGroq.html) class as valid dictionary fields."
+        tooltip = "Agents in the layer agent configuration run in parallel _per cycle_."
         st.markdown("Layer Agent Config", help=tooltip)
         new_layer_agent_config = st_ace(
             key="layer_agent_config",
@@ -289,15 +289,14 @@ This is passed into the `{helper_response}` variable in the system prompt. \
 
     st.markdown("---")
     st.markdown("""
-    ### Credits
-    - MOA: [Together AI](https://www.together.ai/blog/together-moa)
-    - LLMs: [Groq](https://groq.com/)
-    - Paper: [arXiv:2406.04692](https://arxiv.org/abs/2406.04692)
+    ### 
+    
+    
     """)
 
 # Main app layout
 st.header("Mixture of Agents", anchor=False)
-st.write("A demo of the Mixture of Agents architecture proposed by Together AI, Powered by Groq LLMs.")
+st.write("A demo of the Mixture of Agents architecture.")
 
 # Display current configuration
 with st.status("Current MOA Configuration", expanded=True, state='complete') as config_status:
